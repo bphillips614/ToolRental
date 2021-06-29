@@ -24,9 +24,6 @@ public class ToolRentalService {
 		int chargeDays = getChargeDays(tool, checkoutDate, rentalDays);
 		double preDiscountCharge = chargeDays * tool.getDailyCharge();
 		double discountAmount = (Math.floor((preDiscountCharge * discount) * 100)) / 100;
-		System.out.println("preDiscountCharge = " + preDiscountCharge);
-		System.out.println("discountAmount = " + discountAmount);
-		System.out.println(preDiscountCharge - discountAmount);
 		double finalCharge = Math.round((preDiscountCharge - discountAmount) * 100.0) / 100.0;
 		
 		JSONObject json = new JSONObject();
@@ -83,10 +80,5 @@ public class ToolRentalService {
 			return true;
 		}
 		return false;
-	}
-	
-	//handles double math roundoff error
-	private double getFinalCharge(double preDiscountCharge, double discountAmount) {
-		return 0.0;
 	}
 }
