@@ -13,23 +13,14 @@ import service.ToolRentalService;
 public class ToolsServlet extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("in the ToolsServlet");
-		
 		String code = request.getParameter("code");
 		Long checkoutDate = Long.parseLong(request.getParameter("checkoutDate"));
 		int rentalDays = Integer.parseInt(request.getParameter("rentalDays"));
 		double discount = Double.parseDouble(request.getParameter("discount"));
 		
-		System.out.println("codeParam = " + code);
-		System.out.println("checkoutDateParam = " + checkoutDate);
-		System.out.println("rentalDaysParam = " + rentalDays);
-		System.out.println("discountParam = " + discount);
-		
 		ToolRentalService trs = new ToolRentalService();
 		String rentalAgreement = trs.generateRentalAgreement(code, checkoutDate, rentalDays, discount);
-		
-		System.out.println("rentalAgreement = " + rentalAgreement);
-		
+
 		PrintWriter out = response.getWriter();
 		out.write(rentalAgreement);
 		out.close();
